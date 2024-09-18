@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הפיכת שיעורי בית ל-PDF</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .container {
+            background: linear-gradient(135deg, #6B73FF 10%, #000DFF 100%);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        label {
+            color: white;
+            font-size: 1.2em;
+            margin-top: 20px;
+            display: block;
+        }
+
+        input[type="text"], input[type="file"] {
+            width: 90%;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            margin-top: 10px;
+            font-size: 1em;
+        }
+
+        input[type="file"] {
+            background-color: white;
+        }
+
+        button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.2em;
+            border-radius: 30px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #f50057;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        #downloadLink {
+            display: none;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #4caf50;
+            padding: 15px;
+            border-radius: 30px;
+            display: inline-block;
+        }
+
+        #downloadLink:hover {
+            background-color: #388e3c;
+        }
+
+        .share-btns {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .share-btns button {
+            background-color: #008CBA;
+            margin: 5px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>המרת שיעורי בית ל-PDF</h1>
+        <form id="pdfForm">
+            <label for="studentName">שם התלמיד:</label>
+            <input type="text" id="studentName" placeholder="הזן שם תלמיד" required>
+
+            <label for="teacherName">שם המורה:</label>
+            <input type="text" id="teacherName" placeholder="הזן שם מורה" required>
+
+            <label for="images">העלה תמונות:</label>
+            <input type="file" id="images" multiple accept="image/*" required>
+
+            <button type="button" onclick="generatePDF()">צור PDF</button>
+        </form>
+
+        <a id="downloadLink" download>הורד PDF</a>
+
+        <div class="share-btns">
+            <button id="whatsappBtn" onclick="sendWhatsApp()">שלח ב-WhatsApp</button>
+            <button id="emailBtn" onclick="sendEmail()">שלח במייל</button>
+            <button id="classroomBtn" onclick="shareClassroom()">שתף ב-Google Classroom</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
