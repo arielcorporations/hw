@@ -38,10 +38,13 @@ async function generatePDF() {
 
     let pdfFileName = `${studentName} שיעורי בית ${teacherName}.pdf`;
 
-    // Trigger download
+    // Save the PDF file locally
     let pdfData = pdf.output('blob');
+    let fileUrl = URL.createObjectURL(pdfData);
+
+    // Set up the download link
     let link = document.getElementById('downloadLink');
-    link.href = URL.createObjectURL(pdfData);
+    link.href = fileUrl;
     link.download = pdfFileName;
     link.style.display = 'block';
 
@@ -59,20 +62,20 @@ function readFileAsDataURL(file) {
     });
 }
 
-// WhatsApp share
+// WhatsApp share (with PDF attached)
 function sendWhatsApp() {
-    let link = document.getElementById('downloadLink').href;
-    window.open(`https://wa.me/?text=הנה קובץ ה-PDF: ${link}`, '_blank');
+    let file = document.getElementById('downloadLink').href;
+    window.open(`https://wa.me/?text=הנה קובץ ה-PDF של שיעורי הבית: ${file}`, '_blank');
 }
 
-// Email share
+// Email share (with PDF attached)
 function sendEmail() {
-    let link = document.getElementById('downloadLink').href;
-    window.open(`mailto:?subject=קובץ שיעורי בית PDF&body=הורד את קובץ ה-PDF של שיעורי הבית כאן: ${link}`);
+    let file = document.getElementById('downloadLink').href;
+    window.open(`mailto:?subject=קובץ שיעורי בית PDF&body=הורד את קובץ ה-PDF כאן: ${file}`);
 }
 
-// Google Classroom share
+// Google Classroom share (with PDF attached)
 function shareClassroom() {
-    let link = document.getElementById('downloadLink').href;
-    window.open(`https://classroom.google.com/u/0/share?url=${link}`, '_blank');
+    let file = document.getElementById('downloadLink').href;
+    window.open(`https://classroom.google.com/u/0/share?url=${file}`, '_blank');
 }

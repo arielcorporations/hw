@@ -13,12 +13,36 @@
         }
 
         body {
-            background-color: #f5f5f5;
+            margin: 0;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, red, orange, yellow, green, blue, indigo, violet);
+            background-size: 400% 400%;
+            animation: rainbowAnimation 10s ease infinite;
         }
+
+        /* Animation for rainbow gradient */
+        @keyframes rainbowAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            25% {
+                background-position: 100% 50%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            75% {
+                background-position: 0% 100%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
 
         h1 {
             text-align: center;
